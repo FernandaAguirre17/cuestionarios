@@ -45,7 +45,14 @@ import { Card, Container, FormControl, FormGroup, FormLabel, Form, Button} from 
                <FormControl onChange={onChangeRegistrer} name="password" type="password" placeholder="Ingresa tu contraseña"></FormControl>
             </FormGroup>
 
-            <Button onClick={()=>onSubmit()}>Registrate!</Button>
+            {/* Falta la validacion para que tengan que ser exactamente iguales las contraseñas */}
+            
+            <FormGroup>
+               <FormLabel>Confirma tu Contrseña</FormLabel>
+               <FormControl onChange={onChangeRegistrer} name="password" type="password" placeholder="Ingresa tu contraseña"></FormControl>
+            </FormGroup>
+
+            <Button onClick={()=>onSubmit()} className='mt-3'>Registrate!</Button>
 
                 </Form>
             </Card>
