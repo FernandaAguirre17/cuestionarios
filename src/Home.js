@@ -1,19 +1,25 @@
-import React from 'react';
-import { Navbar, Nav, Container, Table, Button } from 'react-bootstrap';
+import React from 'react'
+import { Nav, Container, Table, Button } from 'react-bootstrap'
 
 export const Home = () => {
   return (
     <>
-      <Navbar bg="primary" data-bs-theme="dark">
-      <Container>
-          <Navbar.Brand href="" >Nombre de la página de cuestionarios</Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link href="/home">Inicio</Nav.Link>
-            <Nav.Link href="">Cuestionarios</Nav.Link>
-            <Nav.Link href="">Usuarios</Nav.Link>
-          </Nav>
-        </Container>
-      </Navbar>
+   <Nav variant="tabs" defaultActiveKey="/home">
+   <Nav.Item>
+        <Nav.Link eventKey="disabled" disabled>
+          Cuestionarios UTMA
+        </Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link href="/home">Inicio</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link href="/home">Cuestionarios</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link href="/home">Usuaios</Nav.Link>
+      </Nav.Item>
+    </Nav>
 
       <Container className='d-flex mt-3 justify-content-end'>
         <Button variant='success'>Agregar Usuario</Button>
@@ -37,7 +43,7 @@ export const Home = () => {
             </tr>
             <tr>
                 <td>002</td>
-                <td>María Feranada</td>
+                <td>María Fernanda</td>
                 <td>Aguirre</td>
                 <td>mfaguirre@utma.edu.mx</td>
             </tr>
@@ -56,7 +62,6 @@ export const Home = () => {
         </tbody>
       </Table>
       </Container>
-    </>
-  )
+    </>
+  )
 }
-
