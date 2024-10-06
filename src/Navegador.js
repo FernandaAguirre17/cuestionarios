@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Nav, Container, Table, Button, Card } from 'react-bootstrap';
+import { Navbar, Nav, Container} from 'react-bootstrap';
 
 export const Navegador = () => {
 
