@@ -1,13 +1,13 @@
 import React from 'react';
 import { useState } from "react"; 
 import { Card, Container, FormControl, FormGroup, FormLabel, Form, Button} from 'react-bootstrap';
+import { Navegador } from './Navegador';
 
+export const Usuarios = () => {
 
- export const Usuarios = () => {
+    const [data, setData] = useState({});
 
-    const [data,setData] = useState ({});
-
-    const onChangeRegistrer  = (e)=>{
+    const onChangeRegistrer = (e) => {
         e.preventDefault();
         const nData = data;
         nData[e.target.name] = e.target.value;
@@ -16,13 +16,16 @@ import { Card, Container, FormControl, FormGroup, FormLabel, Form, Button} from 
     };
 
     const onSubmit = () => {
-        console.log (data)
+        console.log(data)
     }
 
-    return(
-        <Container>
-            <Card>
-                <Card.Title>Registro</Card.Title>
+    return (
+        <>
+            <Navegador />
+            <Container className='mt-3'>
+                <Card>
+                    <Card.Body>
+                        <Card.Title>Registro</Card.Title>
 
                 <Form>
                     <FormGroup>
@@ -54,9 +57,17 @@ import { Card, Container, FormControl, FormGroup, FormLabel, Form, Button} from 
 
                     <Button onClick={()=>onSubmit()} className='mt-3'>Registrate!</Button>
 
-                </Form>
-            </Card>
-        </Container>
+                            <FormGroup>
+                                <FormLabel>Confirma tu Contrseña</FormLabel>
+                                <FormControl onChange={onChangeRegistrer} name="password" type="password" placeholder="Ingresa tu contraseña"></FormControl>
+                            </FormGroup>
+
+                            <Button onClick={() => onSubmit()} className='mt-3'>Registrate!</Button>
+
+                        </Form>
+                    </Card.Body>
+                </Card>
+            </Container>
+        </>
     );
 };
-
