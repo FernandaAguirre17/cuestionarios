@@ -7,6 +7,7 @@ import {Usuarios} from './Usuarios';
 import {Login} from './Login';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import {QuizCreator} from './OpMultiple';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const router = createBrowserRouter ([
@@ -25,6 +26,10 @@ const router = createBrowserRouter ([
   {
     path: '/Login',
     element: <Login/>
+  },
+  {
+    path: '/opcion-multiple',
+    element: <QuizCreator/>
   }
 ])
 
