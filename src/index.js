@@ -12,6 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { RecoverPassword } from './RecoverPassword';
 import Forms from './Forms';
 import Prueba from './test';
+import QuestionCasilla from './QuestionCasillas';
 
 const router = createBrowserRouter ([
   {
@@ -46,6 +47,10 @@ const router = createBrowserRouter ([
   {
     path: '/p',
     element: <Prueba/>
+  },
+  {
+    path: '/q',
+    element: <QuestionCasilla />
   }
 ])
 
