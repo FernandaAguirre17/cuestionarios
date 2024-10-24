@@ -1,6 +1,6 @@
 import React from 'react'
-import { Nav, Container, Table, Button } from 'react-bootstrap'
-import { Navegador } from './Navegador'
+import {Container, Table, Button } from 'react-bootstrap'
+import { Navegador } from './Components/Navegador.js';
 
 export const Home = () => {
   return (

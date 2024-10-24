@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Container } from 'react-bootstrap';
-import { Card, Form, Nav } from 'react-bootstrap';
-import { Navegador } from './Navegador';
+import { Card, Form } from 'react-bootstrap';
+import { SimpleNavegador } from './Components/SImpleNavigator';
 
 export const RecoverPassword = () => {
     const [email, setEmail] = useState("");
@@ -16,7 +16,7 @@ export const RecoverPassword = () => {
     }
     return (
         <>
-            <Navegador />
+            <SimpleNavegador />
             <Container className="mt-5">
                 <Card>
                     <Card.Body>

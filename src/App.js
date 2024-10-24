@@ -1,6 +1,6 @@
 import './App.css';
 import { Container, Card } from 'react-bootstrap'
-import { Navegador } from './Navegador';
+import { Navegador } from './Components/Navegador.js';
 
 const App = () => {
   return (

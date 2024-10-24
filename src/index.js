@@ -10,23 +10,25 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import {QuizCreator} from './OpMultiple';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { RecoverPassword } from './RecoverPassword';
+import Forms from './Forms';
+import Prueba from './test';
 
 const router = createBrowserRouter ([
   {
     path: '/',
-    element: <App/>
+    element: <Login/>
   }, 
   {
     path: '/home',
+    element: <App/>
+  },
+  {
+    path: '/users',
     element: <Home/>
   },
   {
-    path: '/Usuarios',
+    path: '/registrarse',
     element: <Usuarios/>
-  },
-  {
-    path: '/Login',
-    element: <Login/>
   },
   {
     path: '/opcion-multiple',
@@ -34,8 +36,16 @@ const router = createBrowserRouter ([
     
   },
   {
-    path: '/RecoverPassword',
+    path: '/recuperarContraseña',
     element: <RecoverPassword/>
+  },
+  {
+    path: '/forms',
+    element: <Forms/>
+  },
+  {
+    path: '/p',
+    element: <Prueba/>
   }
 ])
 

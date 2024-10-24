@@ -1,7 +1,6 @@
 import React from 'react';
-import { useState } from "react"; 
-import { Card, Container, FormControl, FormGroup, FormLabel, Form, Button} from 'react-bootstrap';
-import { Navegador } from './Navegador';
+import { useState } from "react";
+import { Card, Container, Form, Button } from 'react-bootstrap';
 
 export const Login = () => {
 
@@ -21,25 +20,29 @@ export const Login = () => {
 
     return (
         <>
-            <Navegador />
-            <Container className='mt-3'>
-                <Card className='mb-3'>
+            <Container className='mt-3 d-flex justify-content-center'>
+                <Card className='mb-3 d-flex' style={{ width: '60%' }}>
                     <Card.Body>
-                        <Card.Title className='mb-3'>Ingresar</Card.Title>
+                        <Card.Title className='mb-3'>Bienvenido a UTMA Questionnaries</Card.Title>
                         <Form>
-                            <FormGroup>
-                                <FormLabel>Correo</FormLabel>
-                                <FormControl onChange={onChangeLogin} name="email" type="email" placeholder="Ingresa tu correo"></FormControl>
-                            </FormGroup>
+                            <Form.Group>
+                                <Form.Label>Correo</Form.Label>
+                                <Form.Control onChange={onChangeLogin} name="email" type="email" placeholder="Ingresa tu correo"/>
+                            </Form.Group>
 
-                            <FormGroup>
-                                <FormLabel>Contrseña</FormLabel>
-                                <FormControl onChange={onChangeLogin} name="password" type="password" placeholder="Ingresa tu contraseña"></FormControl>
-                            </FormGroup>
+                            <Form.Group>
+                                <Form.Label>Contrseña</Form.Label>
+                                <Form.Control onChange={onChangeLogin} name="password" type="password" placeholder="Ingresa tu contraseña"/>
+                            </Form.Group>
 
-                            <Button onClick={() => onSubmit()} className='mt-3'>Entrar</Button>
+                            <Button href='/home' onClick={() => onSubmit()} type='submit' className='mt-3 d-flex justify-content-center'>Entrar</Button>
 
                         </Form>
+
+                        <Container className='d-flex justify-content-between mt-3'>
+                            <a href='/registrarse'>Registrate</a>
+                            <a href='/recuperarContraseña'>Recuperar Contraseña</a>
+                        </Container>
                     </Card.Body>
                 </Card>
             </Container>

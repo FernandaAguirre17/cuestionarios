@@ -2,8 +2,8 @@ import { useState } from "react";
 import { Card, CardBody, CardText, CardTitle, Container, Form, FormCheck, FormControl, FormGroup, FormLabel, FormSelect } from "react-bootstrap";
 
 
-export const AnwerQuestionnaire = (promps) => {
-    const [questionnaire, setQuestionnaire] = useState(promps.questionnaires)
+export const AnwerQuestionnaire = (props) => {
+    const [questionnaire, setQuestionnaire] = useState(props.questionnaires)
     return (
         <Container>
                 <Card>
