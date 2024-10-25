@@ -13,6 +13,7 @@ import { RecoverPassword } from './RecoverPassword';
 import Forms from './Forms';
 import Prueba from './test';
 import QuestionCasilla from './QuestionCasillas';
+import { AnswerQuestionnaire } from './Components/AnsQuestionnarie';
 
 const router = createBrowserRouter ([
   {
@@ -46,11 +47,11 @@ const router = createBrowserRouter ([
   },
   {
     path: '/p',
-    element: <Prueba/>
+    element: <AnswerQuestionnaire/>
   },
   {
     path: '/q',
-    element: <QuestionCasilla />
+    element: <Prueba />
   }
 ])
 
