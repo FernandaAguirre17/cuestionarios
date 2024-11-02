@@ -3,20 +3,19 @@ import { Navegador } from './Components/Navegador';
 import { Button, Card, Container, Form } from 'react-bootstrap';
 
 const Forms = () => {
-  // Estado inicial del cuestionario
   const [questionnarie, setQuestionnarie] = useState({
     title: '',
     description: '',
     questions: [
       {
         question: '',
-        type: '',
+        type: 'NA',
         options: ['']
       }
     ]
   });
 
-  // Cambiar el título del cuestionario
+  // OnChange del título
   const onChangeTitle = (e) => {
     setQuestionnarie({
       ...questionnarie,
@@ -24,7 +23,7 @@ const Forms = () => {
     });
   };
 
-  // Cambiar el título del cuestionario
+  // OnChange de descripción
   const onChangeDescription = (e) => {
     setQuestionnarie({
       ...questionnarie,
@@ -32,7 +31,7 @@ const Forms = () => {
     });
   };
 
-  // Cambiar el texto de una pregunta específica
+  // OnChange de preguntas
   const onChangeQuestion = (e, index) => {
     const updatedQuestions = [...questionnarie.questions];
     updatedQuestions[index] = {
@@ -44,9 +43,11 @@ const Forms = () => {
       ...questionnarie,
       questions: updatedQuestions
     });
+
+    console.log(questionnarie)
   };
 
-  // Cambiar el texto de una opción específica
+  // OnChange de Opciones
   const onChangeOption = (e, questionIndex, optionIndex) => {
     const updatedQuestions = [...questionnarie.questions];
     const questionToUpdate = updatedQuestions[questionIndex];
@@ -65,19 +66,19 @@ const Forms = () => {
     });
   };
 
-  // Agregar una nueva pregunta al cuestionario
+  // Agregar pregunta
   const addQuestion = () => {
     setQuestionnarie({
       ...questionnarie,
-      questions: [...questionnarie.questions, { question: '', type: '', options: [''] }]
+      questions: [...questionnarie.questions, { question: '', type: 'NA', options: [''] }]
     });
   };
 
-  // Agregar una nueva opción a una pregunta específica
-  const addOptionToQuestion = (questionIndex) => {
+  // Agregar opciones
+  const addOption = (questionIndex) => {
     const updatedQuestions = [...questionnarie.questions];
     const questionToUpdate = updatedQuestions[questionIndex];
-    const updatedOptions = [...questionToUpdate.options, '']; // Agrega una nueva opción vacía
+    const updatedOptions = [...questionToUpdate.options, ''];
 
     updatedQuestions[questionIndex] = {
       ...questionToUpdate,
@@ -90,12 +91,12 @@ const Forms = () => {
     });
   };
 
-  // Eliminar una opción específica de una pregunta
-  const removeOptionFromQuestion = (questionIndex, optionIndex) => {
+  // Borrar opción
+  const deleteOption = (questionIndex, optionIndex) => {
     const updatedQuestions = [...questionnarie.questions];
     const questionToUpdate = updatedQuestions[questionIndex];
-    const updatedOptions = questionToUpdate.options.filter((_, i) => i !== optionIndex); // Filtra la opción a eliminar
-
+    const updatedOptions = questionToUpdate.options.filter((_, i) => i !== optionIndex); 
+    
     updatedQuestions[questionIndex] = {
       ...questionToUpdate,
       options: updatedOptions
@@ -107,9 +108,9 @@ const Forms = () => {
     });
   };
 
-  // Eliminar una pregunta completa
-  const removeQuestion = (questionIndex) => {
-    const updatedQuestions = questionnarie.questions.filter((_, i) => i !== questionIndex); // Filtra la pregunta a eliminar
+  // Borrar una pregunta
+  const deleteQuestion = (questionIndex) => {
+    const updatedQuestions = questionnarie.questions.filter((_, i) => i !== questionIndex);
 
     setQuestionnarie({
       ...questionnarie,
@@ -121,7 +122,7 @@ const Forms = () => {
     <>
       <Navegador />
 
-      {/* Controles para el título del cuestionario */}
+      {/* Controles para el título y descripción del cuestionario */}
       <Container className='d-grid gap-2 d-md-flex mt-3 justify-content-end'>
         <Button variant='secondary'>Vista Previa</Button>
         <Button variant='primary'>Guardar Cuestionario</Button>
@@ -142,18 +143,18 @@ const Forms = () => {
               />
 
               <Form.Label> Descripción del cuestionario: </Form.Label>
-                <Form.Control value={questionnarie.description} onChange={onChangeDescription}/>
+              <Form.Control value={questionnarie.description} onChange={onChangeDescription} />
             </Form>
           </Card.Body>
         </Card>
       </Container>
 
-      {/* Listado de preguntas dinámicas */}
+      {/* Preguntas y Opciones */}
       {questionnarie.questions.map((q, index) => (
         <Container key={index} className='mt-3'>
           <Card>
             <Card.Body>
-              <Card.Title>Pregunta {index + 1}</Card.Title>
+              <Card.Title>{index + 1}. {q.question}</Card.Title>
 
               <Container className='d-grid gap-2 d-md-flex mt-3 justify-content-end'>
                 <Form.Control
@@ -161,6 +162,7 @@ const Forms = () => {
                   value={q.question}
                   onChange={(e) => onChangeQuestion(e, index)}
                 />
+                
                 <Form.Select
                   value={q.type}
                   className='mt-2'
@@ -176,15 +178,15 @@ const Forms = () => {
                     });
                   }}
                 >
-                  <option value=''>Seleccione el tipo de pregunta</option>
-                  <option value='multiple'>Opción Múltiple</option>
+                  <option value='NA'>Seleccione el tipo de pregunta</option>
+                  <option value='multOption'>Opción Múltiple</option>
                   <option value='checkbox'>Casilla de Verificación</option>
-                  <option value='shortAnswer'>Respuesta Corta</option>
+                  <option value='Answer'>Respuesta Corta</option>
                 </Form.Select>
               </Container>
 
-              {/* Si la pregunta es de tipo "Respuesta Corta" */}
-              {q.type === 'shortAnswer' ? (
+              {/* Para cuando no te deje poner opciones cuando es respuesta corta.*/}
+              {q.type === 'Answer' ? (
                 <Container className='mt-3'>
                   <Form.Label>Respuesta:</Form.Label>
                   <Form.Control
@@ -194,20 +196,23 @@ const Forms = () => {
                 </Container>
               ) : (
                 <Container>
+
+
                   {/* Opciones de cada pregunta */}
                   <Card.Text className='mt-3'>Opciones:</Card.Text>
-                  {q.options.map((option, optIndex) => (
-                    <Container key={optIndex} className='d-flex align-items-center'>
+                  {q.options.map((option, i) => (
+                    <Container key={i} className='d-flex align-items-center'>
                       <Form.Control
                         value={option}
-                        placeholder={`Opción ${optIndex + 1}`}
-                        onChange={(e) => onChangeOption(e, index, optIndex)}
+                        placeholder={`Opción ${i + 1}`}
+                        onChange={(e) => onChangeOption(e, index, i)}
                         className='mt-2'
                       />
                       {q.options.length > 1 && (
+                        //Borra opciones
                         <Button
                           variant='danger'
-                          onClick={() => removeOptionFromQuestion(index, optIndex)}
+                          onClick={() => deleteOption(index, i)}
                           className='ms-2 mt-1'
                         >
                           X
@@ -219,16 +224,17 @@ const Forms = () => {
                   <Container className='d-flex justify-content-between'>
                     <Button
                       variant='secondary'
-                      onClick={() => addOptionToQuestion(index)}
+                      onClick={() => addOption(index)}
                       className='mt-3'
                     >
                       Agregar Opción
                     </Button>
 
                     {questionnarie.questions.length > 1 && (
+
                       <Button
                         variant='danger'
-                        onClick={() => removeQuestion(index)}
+                        onClick={() => deleteQuestion(index)}
                         className='mt-3'
                       >
                         Eliminar Pregunta
@@ -242,7 +248,7 @@ const Forms = () => {
         </Container>
       ))}
 
-      <Container className='d-grid gap-2 d-md-flex mt-3 justify-content-end'>
+      <Container className='d-grid gap-2 d-md-flex mt-3 justify-content-end mb-5'>
         <Button variant='primary' onClick={addQuestion}>Agregar Pregunta</Button>
       </Container>
     </>
