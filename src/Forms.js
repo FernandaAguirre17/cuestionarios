@@ -17,22 +17,42 @@ const Forms = () => {
 
   // OnChange del título
   const onChangeTitle = (e) => {
+    const vContenido = /^[a-zA-Z0-9\s]+$/;
+    const newTitle = e.target.value.trim();
+
+    if (newTitle === ""){
+      alert("No permite vacio")
+      return;
+    } else if (!vContenido.test(newTitle)){
+      alert("Solo permite numeros y letras")
+      return;
+    }
     setQuestionnarie({
       ...questionnarie,
-      title: e.target.value
+      title: newTitle
     });
   };
 
   // OnChange de descripción
   const onChangeDescription = (e) => {
+    const newDescription = e.target.value.trim();
+    if (newDescription === ""){
+      alert("No puede estar vacio")
+      return;
+    }
     setQuestionnarie({
       ...questionnarie,
-      description: e.target.value
+      description: newDescription
     });
   };
 
   // OnChange de preguntas
   const onChangeQuestion = (e, index) => {
+    const newQuestion = e.target.value.trim();
+    if (newQuestion === ""){
+      alert("No puede estar vacio")
+      return;
+    }
     const updatedQuestions = [...questionnarie.questions];
     updatedQuestions[index] = {
       ...updatedQuestions[index],
@@ -49,6 +69,16 @@ const Forms = () => {
 
   // OnChange de Opciones
   const onChangeOption = (e, questionIndex, optionIndex) => {
+    const vContenido = /^[a-zA-Z0-9\s]+$/;
+    const newOption = e.target.value.trim();
+
+    if (newOption === ""){
+      alert("No permite vacio")
+      return;
+    } else if (!vContenido.test(newOption)){
+      alert("Solo permite numeros y letras")
+      return;
+    }
     const updatedQuestions = [...questionnarie.questions];
     const questionToUpdate = updatedQuestions[questionIndex];
     const updatedOptions = [...questionToUpdate.options];

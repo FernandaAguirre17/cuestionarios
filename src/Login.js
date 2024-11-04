@@ -12,7 +12,25 @@ export const Login = () => {
         nData[e.target.name] = e.target.value;
         setData(nData);
         console.log(nData)
+
+
+
+        if (e.target.name === 'email') {
+            const vCharacter = /.com/
+            const newEmail = e.target.value;
+            const vEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+            if (vCharacter.test(newEmail)) {
+                if (!vEmail.test(newEmail)) {
+                    alert("El email ingresado no es correcto")
+                    return;
+                }
+            }
+        }
     };
+
+
+
+
 
     const onSubmit = () => {
         console.log(data)
@@ -27,12 +45,12 @@ export const Login = () => {
                         <Form>
                             <Form.Group>
                                 <Form.Label>Correo</Form.Label>
-                                <Form.Control onChange={onChangeLogin} name="email" type="email" placeholder="Ingresa tu correo"/>
+                                <Form.Control onChange={onChangeLogin} name="email" type="email" placeholder="Ingresa tu correo" />
                             </Form.Group>
 
                             <Form.Group>
                                 <Form.Label>Contrseña</Form.Label>
-                                <Form.Control onChange={onChangeLogin} name="password" type="password" placeholder="Ingresa tu contraseña"/>
+                                <Form.Control onChange={onChangeLogin} name="password" type="password" placeholder="Ingresa tu contraseña" />
                             </Form.Group>
 
                             <Button href='/home' onClick={() => onSubmit()} type='submit' className='mt-3 d-flex justify-content-center'>Entrar</Button>
