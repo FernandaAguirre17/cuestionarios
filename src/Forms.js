@@ -18,7 +18,7 @@ const Forms = () => {
   // OnChange del título
   const onChangeTitle = (e) => {
     const vContenido = /^[a-zA-Z0-9\s]+$/;
-    const newTitle = e.target.value.trim();
+    const newTitle = e.target.value;
 
     if (newTitle === ""){
       alert("No permite vacio")
@@ -35,7 +35,7 @@ const Forms = () => {
 
   // OnChange de descripción
   const onChangeDescription = (e) => {
-    const newDescription = e.target.value.trim();
+    const newDescription = e.target.value
     if (newDescription === ""){
       alert("No puede estar vacio")
       return;
@@ -48,7 +48,7 @@ const Forms = () => {
 
   // OnChange de preguntas
   const onChangeQuestion = (e, index) => {
-    const newQuestion = e.target.value.trim();
+    const newQuestion = e.target.value;
     if (newQuestion === ""){
       alert("No puede estar vacio")
       return;
@@ -70,7 +70,7 @@ const Forms = () => {
   // OnChange de Opciones
   const onChangeOption = (e, questionIndex, optionIndex) => {
     const vContenido = /^[a-zA-Z0-9\s]+$/;
-    const newOption = e.target.value.trim();
+    const newOption = e.target.value;
 
     if (newOption === ""){
       alert("No permite vacio")
@@ -156,6 +156,7 @@ const Forms = () => {
       <Container className='d-grid gap-2 d-md-flex mt-3 justify-content-end'>
         <Button variant='secondary'>Vista Previa</Button>
         <Button variant='primary'>Guardar Cuestionario</Button>
+        <Button variant='info' href='/graficas'>Mostrar Gráficas</Button>
       </Container>
 
       <Container className='mt-3'>
